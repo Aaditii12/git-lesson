@@ -1,7 +1,15 @@
 pipeline {
     agent any
+    options {
+        skipDefaultCheckout(true)
+    }
 
     stages {
+        stage('CleanUp') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Git Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Aaditii12/git-lesson.git']]])
