@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+      booleanParam description: 'Select check box for python script will be run', name: 'TESTCASE_SELECTION'
+    }
     options {
         skipDefaultCheckout(true)
     }
@@ -23,7 +26,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'the job has been tested'
+                echo "TESTCASE_SELECTION : ${params.TESTCASE_SELECTION}"
             }
         }
     }
